@@ -260,11 +260,9 @@ def make_frame_mpl(t):
 
 duration = 2
 animation = mpy.VideoClip(make_frame_mpl, duration=duration)
-animation.write_gif("3D狗子轨迹.gif", fps=fps)
+animation.write_videofile("3D狗子轨迹.mp4", fps=fps)
 
-# 加载GIF图片
-gif_path = "3D狗子轨迹.gif"
-gif = open(gif_path, "rb").read()
+video_path = "3D狗子轨迹.mp4"  # 视频文件的本地路径
 
-# 在Streamlit中显示GIF图片
-st.image(gif)
+# 在Streamlit中显示视频
+st.video(video_path)
