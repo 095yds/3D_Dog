@@ -268,6 +268,3 @@ gif = open(gif_path, "rb").read()
 
 # 在Streamlit中显示GIF图片
 st.image(gif)
-
-# 在Streamlit中显示视频
-st.video(video_path)
