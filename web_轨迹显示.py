@@ -1,11 +1,13 @@
 import streamlit as st
 import copy
+import matplotlib
+
 
 import matplotlib.pyplot as plt
 from moviepy.video.io.bindings import mplfig_to_npimage
 import moviepy.editor as mpy
 import numpy as np
-
+matplotlib.use('PS')
 duration = 2  # 持续时间
 
 st.write("""
