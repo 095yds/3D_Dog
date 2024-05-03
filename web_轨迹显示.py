@@ -14,7 +14,8 @@ st.write("""
 S = st.slider('请输入步长:', 0, 100)
 H = st.slider('请输入步高:', 0, 100)
 fps = st.slider('请输入一个周期的时长:', 1, 100)
-
+latest_iteration = st.empty()
+bar = st.progress(0)
 
 class BEZIER:
     def __init__(self, BezierX2=[0, 0], BezierY2=[0, 0], BezierX6=[0, 0, 0, 0, 0, 0], BezierY6=[0, 0, 0, 0, 0, 0],
@@ -248,20 +249,23 @@ line3, = ax1.plot(x2, -y2, z2, lw=1)
 
 
 def make_frame_mpl(t):
-    temp_m = (t * fps) // 1
+    temp_m = int(t * fps)
     line1.set_ydata(y(temp_m))  # 更新曲面
     line1.set_xdata(x(temp_m))  # 更新曲面
     line1.set_3d_properties(z(temp_m))  # 更新曲面
     line4.set_ydata(y(temp_m + fps))  # 更新曲面
     line4.set_xdata(x(temp_m + fps) - np.array([250, 250, 250, 250, 250, 250, 250, 250, 250, 250]))  # 更新曲面
     line4.set_3d_properties(z(temp_m + fps))  # 更新曲面
+    latest_iteration.text(f'处理中 {np.ceil((temp_m+1)/(duration*fps)*99)} %')
+    bar.progress((temp_m+1)/(duration*fps)*0.99)
     return mplfig_to_npimage(fig)  # 图形的RGB图像
 
 
 duration = 2
 animation = mpy.VideoClip(make_frame_mpl, duration=duration)
 animation.write_gif("3D狗子轨迹.gif", fps=fps)
-
+latest_iteration.text(f'处理中 {100} %')
+bar.progress(100)
 # 加载GIF图片
 gif_path = "3D狗子轨迹.gif"
 gif = open(gif_path, "rb").read()
