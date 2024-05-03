@@ -1,13 +1,10 @@
 import streamlit as st
 import copy
-import matplotlib
-
 
 import matplotlib.pyplot as plt
 from moviepy.video.io.bindings import mplfig_to_npimage
 import moviepy.editor as mpy
 import numpy as np
-matplotlib.use('PS')
 duration = 2  # 持续时间
 
 st.write("""
@@ -17,6 +14,7 @@ st.write("""
 S = st.slider('请输入步长:', 0, 100)
 H = st.slider('请输入步高:', 0, 100)
 fps = st.slider('请输入一个周期的时长:', 1, 100)
+
 
 class BEZIER:
     def __init__(self, BezierX2=[0, 0], BezierY2=[0, 0], BezierX6=[0, 0, 0, 0, 0, 0], BezierY6=[0, 0, 0, 0, 0, 0],
@@ -135,7 +133,6 @@ get_BezierPoints_rank6(Bezier[0])
 get_BezierPoints_rank2(Bezier[0])
 
 
-
 def get_point(i):
     Set_Point1 = [0, 0, 0]
     i = int(i)
@@ -151,7 +148,7 @@ def get_point(i):
         return -Set_Point1[0], Set_Point1[1]
 
 
-fig = plt.figure(figsize=(10,8))
+fig = plt.figure(figsize=(10, 8))
 ax1 = fig.add_subplot(1, 1, 1, projection="3d")
 ax1.set_xlim(-335, 135)
 ax1.set_ylim(-225, 225)
