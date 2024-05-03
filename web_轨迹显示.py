@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import copy
 
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from moviepy.video.io.bindings import mplfig_to_npimage
 import moviepy.editor as mpy
@@ -15,11 +16,11 @@ st.write("""
 
 S = st.slider('请输入步长:', 0, 100)
 H = st.slider('请输入步高:', 0, 100)
-fps = st.slider('请输入一个周期的时长:', 0, 100)
+fps = st.slider('请输入一个周期的时长:', 1, 100)
 
 class BEZIER:
     def __init__(self, BezierX2=[0, 0], BezierY2=[0, 0], BezierX6=[0, 0, 0, 0, 0, 0], BezierY6=[0, 0, 0, 0, 0, 0],
-                 BezierX12=[], BezierY12=[], H=10, L=100,
+                 BezierX12=[], BezierY12=[], H=H, L=S,
                  start_x=0, start_y=174, BezierLen=6):
         self.BezierX2 = BezierX2
         self.BezierY2 = BezierY2
