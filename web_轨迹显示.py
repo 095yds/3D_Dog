@@ -1,8 +1,6 @@
 import streamlit as st
-import pandas as pd
 import copy
 
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from moviepy.video.io.bindings import mplfig_to_npimage
 import moviepy.editor as mpy
